@@ -1,0 +1,36 @@
+{
+  "name": "bradleynguyendiag/encrypt",
+  "description": "The PHP SDK for encrypt string",
+  "type": "library",
+  "homepage": "https://github.com/bradleynguyendiag/encrypt",
+  "keywords": [
+    "encrypt",
+    "decrypt",
+    "AES-256-CBC",
+    "php"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Bradley Nguyen",
+      "email": "giang.nguyen@diag.vn"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "firebase/php-jwt": "^6.3",
+    "christian-riesen/base32": "^1.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "DiagVN\\Encrypt\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "DiagVN\\Encrypt\\EncryptServiceProvider"
+      ]
+    }
+  }
+}
