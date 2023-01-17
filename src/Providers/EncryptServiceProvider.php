@@ -25,7 +25,7 @@ class EncryptServiceProvider extends ServiceProvider
                 //file source => file destination below
                 __DIR__ . '/Config/encrypt.php' => config_path('encrypt.php'),
                 //you can also add more configs here
-            ]
+            ], 'encrypt-config'
         );
     }
 
