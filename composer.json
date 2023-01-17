@@ -29,7 +29,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "DiagVN\\Encrypt\\EncryptServiceProvider"
+        "DiagVN\\Encrypt\\Providers\\EncryptServiceProvider"
       ]
     }
   }

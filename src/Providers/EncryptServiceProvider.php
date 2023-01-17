@@ -1,6 +1,6 @@
 <?php
 
-namespace DiagVN\Encrypt;
+namespace DiagVN\Encrypt\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
