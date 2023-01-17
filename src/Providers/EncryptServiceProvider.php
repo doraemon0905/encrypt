@@ -23,7 +23,7 @@ class EncryptServiceProvider extends ServiceProvider
         $this->publishes(
             [
                 //file source => file destination below
-                __DIR__ . '/Config/encrypt.php' => config_path('encrypt.php'),
+                __DIR__ . '/../Config/encrypt.php' => config_path('encrypt.php'),
                 //you can also add more configs here
             ], 'encrypt-config'
         );
