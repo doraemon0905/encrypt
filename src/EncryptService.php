@@ -7,7 +7,7 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Base32\Base32;
 
-class EncryptService
+class EncryptService implements EncryptInterface
 {
     /** @var string */
     private static $keychars = 'CZPXD5H2FIWB81KE76JY93V4ORLAMT0QSUNG'; // Dictionary of allowed unique symbols, shuffle it for yourself or remove unwanted chars (don't forget to call testParameters after changing)
@@ -25,7 +25,7 @@ class EncryptService
      * @param integer $i
      * @return string
      */
-    public static function encode(int $i): string
+    public static function encode($i): string
     {
         if ($i < 0) {
             throw new Exception('Expected positive integer');
@@ -53,9 +53,9 @@ class EncryptService
 
     /**
      * @param [type] $code
-     * @return void
+     * @return int
      */
-    public static function decode($code)
+    public static function decode($code): int
     {
         $keychars = static::$keychars;
         $biasC = substr($code, -1);
@@ -71,26 +71,5 @@ class EncryptService
         }
 
         return $val - static::$noise;
-    }
-
-    public static function encryptKey(array $payload): string
-    {
-        return Base32::encode(
-            JWT::encode(
-                payload: $payload,
-                key    : file_get_contents(config('encrypt.private_key')),
-                alg    : 'HS256'
-            )
-        );
-    }
-
-    public static function decryptKey(string $hashToDecode): object
-    {
-        $key = file_get_contents(config('encrypt.private_key'));
-
-        return JWT::decode(
-            Base32::decode($hashToDecode),
-            new Key($key, 'HS256')
-        );
     }
 }

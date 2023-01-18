@@ -6,9 +6,9 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Base32\Base32;
 
-class JwtEncryptService
+class JwtEncryptService implements EncryptInterface
 {
-    public static function encryptKey(array $payload): string
+    public static function encode($payload): string
     {
         return Base32::encode(
             JWT::encode(
@@ -19,7 +19,7 @@ class JwtEncryptService
         );
     }
 
-    public static function decryptKey(string $hashToDecode): object
+    public static function decode($hashToDecode): object
     {
         $key = file_get_contents(config('encrypt.private_key'));
 

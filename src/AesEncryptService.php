@@ -2,7 +2,7 @@
 
 namespace DiagVN\Encrypt;
 
-class AesEncryptService
+class AesEncryptService implements EncryptInterface
 {
     private static $key;
     private static $iv;
@@ -15,7 +15,7 @@ class AesEncryptService
         self::$method = config('encrypt.aes_method');
     }
 
-    public static function decryptKey(string $secret): string
+    public static function decode($secret): string
     {
         $padwith = '~';
         $fixed_secret = str_replace(['-', '_'], ['+', '/'], $secret);
@@ -27,7 +27,7 @@ class AesEncryptService
         return rtrim($decrypted_secret, $padwith);
     }
 
-    public function encrypt(string $string): string
+    public static function encode($string): string
     {
         $crypt = [
             'key' => self::$key,
