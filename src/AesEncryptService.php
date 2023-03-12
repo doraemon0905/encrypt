@@ -29,16 +29,10 @@ class AesEncryptService implements EncryptInterface
 
     public static function encode($string): string
     {
-        $crypt = [
-            'key' => self::$key,
-            'method' => self::$method,
-            'iv' => self::$iv,
-        ];
         // hash
-        $key = hash('sha256', $crypt['key']);
-
-        $iv = substr(hash('sha256', $crypt['iv']), 0, 16);
-        $output = openssl_encrypt($string, $crypt['method'], $key, 0, $iv);
+        $key = hash('sha256', self::$key);
+        $iv = substr(hash('sha256', self::$iv), 0, 16);
+        $output = openssl_encrypt($string, self::$method, $key, 0, $iv);
         return str_replace(['+', '/'], ['-', '_'], $output);
     }
 }
