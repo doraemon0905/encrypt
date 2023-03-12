@@ -24,7 +24,7 @@ class AesEncryptService implements EncryptInterface
         $iv_hash = substr(hash('sha256', self::$iv), 0, $iv_len);
 
         $decrypted_secret = openssl_decrypt($fixed_secret, self::$method, $hashKey, OPENSSL_ZERO_PADDING, $iv_hash);
-        return rtrim($decrypted_secret, $padwith);
+        return preg_replace('~[.[:cntrl:][:space:]]~', '', rtrim($decrypted_secret, $padwith));
     }
 
     public static function encode($string): string
